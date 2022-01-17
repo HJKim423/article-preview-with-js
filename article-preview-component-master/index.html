@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+  <title>Frontend Mentor | Article preview component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    button{
+      border: none;
+      background-color: transparent;
+      color: white;
+      font-size: 22px;
+    }
+    button:hover{
+      cursor: pointer;
+    }
+
+    body{
+      background-color: hsl(210, 46%, 95%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .main{
+      width: 800px;
+      height: 300px;
+      display: flex;
+      
+    }
+
+    .left-drawers{
+      width: 300px;
+      height: 300px;
+
+    }
+
+    .drawer-img{
+      object-fit: cover;
+      width: 300px;
+      height: 300px;
+      border-radius: 10px 0 0 10px;
+      
+    }
+    .right-text{
+      width: 500px;
+      height: 300px;
+      background-color: white;
+      border-radius: 0 10px 10px 0;
+      
+    }
+
+    .right-text .title{
+      font-size: 20px;
+      font-weight: 700;
+      padding-bottom: 20px;
+      padding: 40px 50px 20px 40px;
+      color: hsl(217, 19%, 35%);
+    }
+
+    .right-text .content{
+      font-size: 13px;
+      font-weight: 500;
+      padding: 0px 50px 30px 40px;
+      color: hsl(212, 23%, 69%);
+    }
+
+    .introduction{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 50px 20px 40px;
+    }
+    .avatar{
+      display: flex;
+    }
+    .avatar-face{
+      width: 40px;
+      border-radius: 50%;
+      padding-right: 20px;
+    }
+
+    .avatar-info{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .name{
+      font-size: 13px;
+      font-weight: 700;
+      color: hsl(217, 19%, 35%);
+    }
+    .date{
+      font-size: 13px;
+      color: hsl(212, 23%, 69%);
+    }
+
+  
+    .share{
+      background-color: hsl(214, 17%, 51%);
+      border-radius: 50%;
+      width: 33px;
+      height: 33px;
+      font-size: 15px;
+    }
+  
+
+    .share-open{
+      background-color: hsl(217, 19%, 35%);
+      padding: 14px 35px;
+      border-radius: 10px;
+      color: hsl(212, 23%, 69%);
+      font-size: 13px;
+      transform: translate(133%, 350%);
+      display: flex;
+      align-items: center;     
+      
+    }
+    .share-open__text{
+      padding-right: 20px;
+    }
+
+    .hidden{
+      visibility: hidden;
+    }
+    .triangle{
+      width:22px;
+      height: 22px;
+      background-color: hsl(217, 19%, 35%);
+      transform: translate(1550%, 842%) rotate(45deg);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="share-open hidden">
+    <span class="share-open__text">S H A R E</span>
+    <span class="shareBtns">
+      <button class="facebook"><i class="fab fa-facebook-square"></i></button>
+      <button class="twitter"><i class="fab fa-twitter"></i></button>
+      <button class="git"><i class="fab fa-github-square"></i></button>
+    </span>
+  </div>
+  <div class="triangle hidden"></div>
+  <div class="main">
+    <div class="left-drawers">
+      <img class="drawer-img" src="images/drawers.jpg" alt="drawer" />
+    </div>
+    <div class="right-text">
+      <header class="title">Shift the overall look and feel by adding these wonderful 
+        touches to furniture in your home</header>
+      <section class="content"> Ever been in a room and felt like something was missing? Perhaps 
+        it felt slightly bare and uninviting. I’ve got some simple tips 
+        to help you make any room feel complete.</section>
+      <footer class="introduction">
+        <div class="avatar">
+          <img class="avatar-face" src="images/avatar-michelle.jpg" alt="face" />
+          <span class="avatar-info">
+          <div class="name">Michelle Appleton</div>
+          <div class="date">28 Jun 2020</div>
+          </span>
+        </div>
+        <button class="share"><i class="fas fa-share"></i></button>
+      </footer>
+    </div>
+  </div>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">HJ KIM</a>.
+  </div>
+
+  <script>
+    const share = document.querySelector(".share");
+    const shareOpen = document.querySelector(".share-open");
+    const main = document.querySelector(".main");
+    const triangle = document.querySelector(".triangle");
+
+    let clicked = false;
+    
+    function handleMainClick(event){
+      const target = event.target.className;
+      if(target !== "share" && target !== "fas fa-share"){
+        shareOpen.classList.add("hidden");
+        triangle.classList.add("hidden");
+      }      
+    }
+
+    function handleShareClick(){
+      if(!clicked){
+        shareOpen.classList.remove("hidden");
+        triangle.classList.remove("hidden");
+        clicked = true;
+      }
+      else if(clicked){
+        shareOpen.classList.add("hidden");
+        triangle.classList.add("hidden");
+        clicked = false;
+      }
+      
+    }
+  
+    share.addEventListener("click", handleShareClick);
+    main.addEventListener("click",handleMainClick);
+  </script>
+</body>
+</html>
