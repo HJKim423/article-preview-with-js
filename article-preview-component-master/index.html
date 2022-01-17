@@ -139,7 +139,7 @@
       transform: translate(1540%, 970%) rotate(45deg);
     }
 
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 768px) {
       .main {
         width: 320px;
         height: 500px;
@@ -239,13 +239,13 @@
     const shareOpen = document.querySelector(".share-open");
     const main = document.querySelector(".main");
     const triangle = document.querySelector(".triangle");
-
-    const mql = window.matchMedia("screen and (max-width: 400px)");
-
+    var mql = window.matchMedia("screen and (max-width: 768px)");
 
     let clicked = false;
 
-    if(mql){
+mql.addListener(function(e) {
+    if(e.matches) {
+    
       const reShare = document.createElement( 'button' );
       const reShareText = document.createTextNode( 'Click' );
       reShare.appendChild( reShareText );
@@ -255,8 +255,14 @@
 
       reShare.addEventListener("click", ()=>{
         shareOpen.classList.add("hidden");
-      })
+    } );
+  }
+    else {
+      shareOpen.removeChild( reShare );
     }
+});
+
+
     
     function handleMainClick(event){
       const target = event.target.className;
@@ -282,6 +288,7 @@
   
     share.addEventListener("click", handleShareClick);
     main.addEventListener("click",handleMainClick);
+    window.addEventListener("resize", handleMobieVer);
   </script>
 </body>
 </html>
